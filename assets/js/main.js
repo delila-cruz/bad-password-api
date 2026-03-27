@@ -18,9 +18,15 @@ document.querySelectorAll("input[type=radio]").forEach((ele) => {
 
 // called from load and user events
 async function updatePassword() {
-    // 👉 add code inside this function (from Chapter 9) ...
-
-
-
-    // 👈
+    let group1 =
+        document.querySelector("input[name=group1]:checked");
+    let group2 =
+        document.querySelector("input[name=group2]:checked");
+    console.log(group1, group2);
+    let url = "/api/custom?params=" + group1.value + "," + group2.value;
+    await fetch(url)
+        .then((response) => response.json())
+        .then((json) => {
+            password.value = json.message;
+        });
 }
